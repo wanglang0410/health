@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/health_parent">
+      <sourceFolder url="file://$MODULE_DIR$/health_parent/health_service_provider/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/health_parent/health_service_provider/src/main/resources" type="java-test-resource" />
+    </content>
+  </component>
+</module>
