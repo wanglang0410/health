@@ -17,6 +17,12 @@
        </if>
     </select>
 
+
+    <!--查询所有-->
+    <select id="findAll" resultType="com.itheima.pojo.CheckItem">
+        select * from t_checkitem
+    </select>
+
     <!-- 根据ID 查询-->
     <select id="findById" parameterType="int" resultType="com.itheima.pojo.CheckItem">
        select * from t_checkitem where id = #{id}
