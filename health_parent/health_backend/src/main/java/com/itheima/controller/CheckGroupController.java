@@ -21,12 +21,12 @@ public class CheckGroupController {
     private CheckGroupService checkGroupService;
 
 
-    @RequestMapping("/findPage.do")
+    @RequestMapping("/findPage")
     public PageResult findPage(@RequestBody QueryPageBean queryPageBean) {
         return this.checkGroupService.findPage(queryPageBean);
     }
 
-    @RequestMapping("/add.do")
+    @RequestMapping("/add")
     public Result add(@RequestBody CheckGroup checkGroup, Integer[] checkitemIds) {
         try {
             checkGroupService.add(checkGroup, checkitemIds);
@@ -36,7 +36,7 @@ public class CheckGroupController {
         }
     }
 
-    @RequestMapping("/edit.do")
+    @RequestMapping("/edit")
     public Result edit(@RequestBody CheckGroup checkGroup, Integer[] checkitemIds) {
         try {
             checkGroupService.edit(checkGroup, checkitemIds);
@@ -46,7 +46,7 @@ public class CheckGroupController {
         }
     }
 
-    @RequestMapping("/delete.do")
+    @RequestMapping("/delete")
     public Result delete(Integer id) {
         try {
             checkGroupService.delete(id);
@@ -56,7 +56,7 @@ public class CheckGroupController {
         }
     }
 
-    @RequestMapping("/findById.do")
+    @RequestMapping("/findById")
     public Result findById(Integer id) {
         try {
             CheckGroup checkGroup = checkGroupService.findById(id);
@@ -66,7 +66,7 @@ public class CheckGroupController {
         }
     }
 
-    @RequestMapping("/findCheckItemIdsByCheckGroupId.do")
+    @RequestMapping("/findCheckItemIdsByCheckGroupId")
     public Result findCheckItemIdsByCheckGroupId(Integer id) {
         try {
             List<Integer> checkitemIds = checkGroupService.findCheckItemIdsByCheckGroupId(id);
@@ -74,6 +74,16 @@ public class CheckGroupController {
         } catch (Exception e) {
             e.printStackTrace();
             return new Result(false, MessageConstant.QUERY_CHECKITEM_FAIL);
+        }
+    }
+
+    @RequestMapping("/findAll")
+    public Result findAll() {
+        try {
+            List<CheckGroup> list = checkGroupService.findAll();
+            return new Result(true, MessageConstant.QUERY_CHECKGROUP_SUCCESS, list);
+        } catch (Exception e) {
+            return new Result(false, MessageConstant.QUERY_CHECKGROUP_FAIL);
         }
     }
 }
