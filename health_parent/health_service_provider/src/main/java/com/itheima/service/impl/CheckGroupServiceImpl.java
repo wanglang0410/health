@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service
+@Service(interfaceClass = CheckGroupService.class)
 public class CheckGroupServiceImpl implements CheckGroupService {
 
     @Autowired

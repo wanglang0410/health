@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service
+@Service(interfaceClass = SetMealService.class)
 public class SetMealServiceImpl implements SetMealService {
 
     @Autowired
