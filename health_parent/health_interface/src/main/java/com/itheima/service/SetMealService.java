@@ -2,7 +2,6 @@ package com.itheima.service;
 
 import com.itheima.entity.PageResult;
 import com.itheima.entity.QueryPageBean;
-import com.itheima.entity.Result;
 import com.itheima.pojo.Setmeal;
 
 import java.util.List;
@@ -19,4 +18,8 @@ public interface SetMealService {
     public void edit(Setmeal setmeal, Integer[] checkgroupIds);
 
     public void deleteById(Integer id);
+
+    List<Setmeal> findAll();
+
+    Setmeal getById(Integer id);
 }
