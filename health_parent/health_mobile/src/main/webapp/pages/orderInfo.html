@@ -113,12 +113,42 @@
                 methods:{
                     //发送验证码
                     sendValidateCode(){
+                        let telephone = this.orderInfo.telephone
+                        if (!checkTelephone(telephone)) {
+                            this.$message.error('手机号码格式错误')
+                            return false
+                        }
+                        validateCodeButton = $("#validateCodeButton")[0];
+                        clock = window.setInterval(doLoop, 1000); //一秒执行一次
+                        axios.post("/validateCode/sendOrder.do?telephone=" + telephone).then((response) => {
+                            if(!response.data.flag){
+                                //验证码发送失败
+                                this.$message.error('验证码发送失败，请检查手机号输入是否正确');
+                            }
+                        });
                     },
                     //提交预约
                     submitOrder(){
+                        //校验身份证号格式
+                        if(!checkIdCard(this.orderInfo.idCard)){
+                            this.$message.error('身份证号码输入错误，请重新输入');
+                            return false;
+                        }
+                        axios.post("/order/submit.do",this.orderInfo).then((response) => {
+                            if(response.data.flag){
+                                //预约成功，跳转到预约成功页面
+                                window.location.href="orderSuccess.html?orderId=" + response.data.data;
+                            }else{
+                                //预约失败，提示预约失败信息
+                                this.$message.error(response.data.message);
+                            }
+                        });
                     }
                 },
                 mounted(){
+                    axios.post("/setmeal/findById.do?id=" + id).then((response) => {
+                        this.setmeal = response.data.data;
+                    });
                 }
             });
         </script>
